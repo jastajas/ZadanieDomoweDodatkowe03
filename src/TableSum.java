@@ -18,28 +18,44 @@ public class TableSum {
         numbers[2][1] = sc.nextInt();
         numbers[2][2] = sc.nextInt();
 
-        int table1 = IntStream.of(numbers[0]).sum();
+        int[] sumArr = new int[3];
+        int n = 0;
+
+        do {
+            for (int i = 0; i < numbers[n].length; i++) {
+                sumArr[n] += numbers[n][i];
+            }
+            n++;
+        } while (n < numbers.length);
+
+        /*int table1 = IntStream.of(numbers[0]).sum();
         int table2 = IntStream.of(numbers[1]).sum();
-        int table3 = IntStream.of(numbers[2]).sum();
+        int table3 = IntStream.of(numbers[2]).sum();*/
 
-       // System.out.println(table1);
-       // System.out.println(table2);
-       // System.out.println(table3);
 
-        int maxTable = max(table1, max(table2, table3));
-       // System.out.println(maxTable);
+        //int maxTable = max(table1, max(table2, table3));
+
+        int maxValue = sumArr[0];
+        int x = 1;
+        do{
+            if (maxValue < sumArr[x]){
+                maxValue = sumArr[x];
+            }
+            x++;
+        }while(x < sumArr.length);
+
 
         int noTable = 0;
 
-        if(maxTable == table1){
+        if(maxValue == sumArr[0]){
             noTable = 1;
-        } else if (maxTable == table2){
+        } else if (maxValue == sumArr[1]){
             noTable = 2;
         } else {
             noTable = 3;
         }
 
-        System.out.println("Największa suma liczb jest w wierszu nr: " + noTable + " i wynosi: " + maxTable);
+        System.out.println("Największa suma liczb jest w wierszu nr: " + noTable + " i wynosi: " + maxValue);
 
     }
 
